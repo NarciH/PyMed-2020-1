@@ -22,3 +22,6 @@ Estas bonificaciones puntos acumulables.
 | Taller 1  | 07 Octubre 2020 | Repaso de conceptos básicos y definición de variables |
 | Taller 1  | 15 Octubre 2020 | Sentencias condicionales y escritura de ecuaciones en programación |
 
+## Enlaces de interés:
+- Palabras reservadas de Python: https://recursospython.com/guias-y-manuales/palabras-reservadas-del-lenguaje/
+- Editor de ecuaciones de latex online: https://www.codecogs.com/latex/eqneditor.php
