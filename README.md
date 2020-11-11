@@ -23,6 +23,8 @@ Estas bonificaciones puntos acumulables.
 | Taller 2  | 15 Octubre 2020 | Sentencias condicionales y escritura de ecuaciones en programación |
 | Taller 3  | 21 Octubre 2020 | Sentencias repetitivas e introducción a módulos |
 | Taller 4  | 28 Octubre 2020 | Ejercicios de clase. Se trabajó también con numpy, scipy, sympy y ecuaciones diferenciales | 
+| Taller 5 | 28 Octubre 2020 | Ejercicios de clase. Estructuras de datos y módulos | 
+
 ## Enlaces de interés:
 - Palabras reservadas de Python: https://recursospython.com/guias-y-manuales/palabras-reservadas-del-lenguaje/
 - Editor de ecuaciones de latex online: https://www.codecogs.com/latex/eqneditor.php
