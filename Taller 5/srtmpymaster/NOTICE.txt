@@ -1,0 +1,6 @@
+srtm.py
+Copyright 2013 Tomo Krajina
+
+This product includes software developed by
+Tomo Krajina (https://tkrajina.blogspot.com/).
+

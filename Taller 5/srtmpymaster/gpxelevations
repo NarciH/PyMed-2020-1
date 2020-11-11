@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from __future__ import print_function
+
+import logging as mod_logging
+import argparse as mod_argparse
+import gpxpy as mod_gpxpy
+
+import srtm as mod_srtm
+
+parser = mod_argparse.ArgumentParser(
+         description='Adds elevation to GPX files.')
+
+parser.add_argument('-o', '--overwrite', action='store_true', default=False,
+                    help='Overwrite existing elevations (otherwise will add elevations only where not yet present)')
+parser.add_argument('-p', '--approximate', action='store_true', default=False,
+                    help='Approximate elevations with neighbour points elevation')
+parser.add_argument('-s', '--smooth', action='store_true', default=False,
+                    help='Smooth elevations')
+parser.add_argument('-c', '--calculate', action='store_true', default=False,
+                    help='Calculate elevations (but don\'t change the GPX file)')
+parser.add_argument('-f', '--file', default=None, type=str,
+                    help='Output filename')
+parser.add_argument('-v', '--verbose', action='store_true', default=False,
+                    help='Verbose output')
+parser.add_argument('gpx_files', nargs='*', help='GPX files')
+
+args = parser.parse_args()
+
+if args.verbose:
+    mod_logging.basicConfig(level=mod_logging.DEBUG,
+                            format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+
+geo_elevation_data = mod_srtm.get_data()
+
+def update_gpx(gpx):
+    geo_elevation_data.add_elevations(gpx, only_missing=not args.overwrite, smooth=args.approximate)
+
+for gpx_file in args.gpx_files:
+    with open(gpx_file) as f:
+        gpx = mod_gpxpy.parse(f.read())
+        update_gpx(gpx)
+
+        if args.smooth:
+            print('Smoothing...')
+            gpx.smooth(vertical=True, horizontal=False)
+            gpx.smooth(vertical=True, horizontal=False)
+            print('Smoothing... done')
+
+        file_name = args.file
+        if not file_name:
+            if gpx_file.lower().endswith('.gpx' ):
+                file_name = gpx_file[:-4] + '_with_elevations.gpx'
+            else:
+                file_name = 'gpx_with_elevations.gpx'
+
+        with open(file_name, 'w') as output_f:
+            output_f.write(gpx.to_xml())
+
+            print()
+            print('Written to {}'.format(file_name))

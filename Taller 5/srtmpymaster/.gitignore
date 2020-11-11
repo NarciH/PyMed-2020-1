@@ -1,0 +1,15 @@
+.vscode/*
+*.tar
+*.zip
+*.pyc
+*.swp
+*.swo
+*.png
+tmp_*
+tags
+MANIFEST
+build/
+dist/
+htmlcov/
+SRTM.py.egg-info/
+.coverage
